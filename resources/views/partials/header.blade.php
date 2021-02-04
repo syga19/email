@@ -5,9 +5,12 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
-        <li class="nav-item {{ Request::routeIs('index') ? 'active' : '' }}">
+        {{-- <li class="nav-item {{ Request::routeIs('index') ? 'active' : '' }}">
           <a class="nav-link" href="{{ route('index') }}">Clients <span class="sr-only">(current)</span></a>
-        </li>
+        </li> --}}
+        <li class="nav-item {{ route(Route::currentRouteName()) == route('index') ? 'active' : '' }}">
+          <a class="nav-link" href="{{ route('index')}}">Clients</a>
+         </li>
         <li class="nav-item {{ Request::routeIs('template') ? 'active' : '' }}">
           <a class="nav-link" href="{{ route('template') }}">Email templates</a>
         </li>
