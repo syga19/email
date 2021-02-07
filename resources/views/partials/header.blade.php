@@ -11,8 +11,8 @@
         <li class="nav-item {{ Request::routeIs('index') ? 'active' : '' }}">
           <a class="nav-link" href="{{ route('index')}}">Clients</a>
          </li>
-        <li class="nav-item {{ Request::routeIs('emailtemplate') ? 'active' : '' }}">
-          <a class="nav-link" href="{{ route('emailtemplate') }}">Email templates</a>
+        <li class="nav-item {{ Request::routeIs('emailtemplate.index') ? 'active' : '' }}">
+          <a class="nav-link" href="{{ route('emailtemplate.index') }}">Email templates</a>
         </li>
         {{-- <li class="nav-item {{ route(Route::currentRouteName()) == route('emailtemplates') ? 'active' : '' }}">
           <a class="nav-link" href="{{ route('template') }}">Email templates</a>
