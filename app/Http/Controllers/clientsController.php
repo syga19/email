@@ -45,5 +45,9 @@ class clientsController extends Controller
             redirect('/')->with('status_error', 'Client was not created!');
     }
 
+    public function destroy($id){
+        \App\Models\Clients::destroy($id);
+        return redirect('/')->with('status_success', 'Post deleted!');
+    }
      
 }

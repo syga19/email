@@ -43,7 +43,10 @@ class TemplatesController extends Controller
         return redirect('/emailtemplate');
     }
 
-
+    public function destroy($id){
+        \App\Models\Templates::destroy($id);
+        return redirect('/emailtemplate')->with('status_success', 'Post deleted!');
+    }
 
 } 
     // public function store(Request $request){

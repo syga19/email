@@ -20,11 +20,11 @@
                 <td>{{ $post['name'] }}</td>
                 <td>{{ $post['surname'] }}</td>
                 <td>{{ $post['email'] }}</td>
-                <td><form action="" method="POST">
-                    {{-- {{ route('posts.destroy', $post['id']) }} --}}
+                <td><form action="{{ route('clients.destroy', $post['id']) }}" method="POST">
+                    @method('DELETE') @csrf
                     <input class="btn btn-danger" type="submit" value="DELETE">
                 </form> 
-                <form action="{{ route('show', $post['id']) }}" method="GET">
+                <form action="" method="GET">
                     <input class="btn btn-primary" type="submit" value="UPDATE">
                 </form>
                 </td>
