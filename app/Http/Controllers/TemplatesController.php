@@ -28,11 +28,12 @@ class TemplatesController extends Controller
     }
     
     public function show($id){
-        foreach($this->prj as $prj){
-            if($prj['id'] == $id){
-                return $prj;
-            }
-        }
+        // foreach($this->prj as $prj){
+        //     if($prj['id'] == $id){
+        //         return $prj;
+        //     }
+        // }
+        return view('emailtemplateone', ['post' => \App\Models\Templates::find($id)]);
     }
     
     // Metodas Create nauja darbuotoja
@@ -47,6 +48,16 @@ class TemplatesController extends Controller
         \App\Models\Templates::destroy($id);
         return redirect('/emailtemplate')->with('status_success', 'Post deleted!');
     }
+    public function update($id, Request $request){
+        $this->validate($request, [
+            'text' => 'required|unique:templates,text,'.$id.',id|max:225',
+        ]);
+        $bp = \App\Models\Templates::find($id);
+
+        $bp->text = $request['text'];
+        $bp->save(); 
+        return redirect('/emailtemplate');
+    }  
 
 } 
     // public function store(Request $request){

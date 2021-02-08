@@ -51,14 +51,13 @@ class clientsController extends Controller
     }
     
     public function update($id, Request $request){
-        // [Dėmesio] validacijoje unique turi būti nurodytas teisingas lentelės pavadinimas!
-        // galime pažiūrėti, kas bus jei bus neteisingas
         $this->validate($request, [
             'name' => 'required|unique:clients,name,'.$id.',id|max:225',
             'surname' => 'required',
             'email' => 'required',
         ]);
         $bp = \App\Models\Clients::find($id);
+
         $bp->name = $request['name'];
         $bp->surname = $request['surname'];
         $bp->email = $request['email'];
