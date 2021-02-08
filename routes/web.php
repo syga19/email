@@ -16,6 +16,8 @@ Route::get('/','App\Http\Controllers\clientsController@index')->name('index');
 Route::get('/{​​​​​​​​id}​​​​​​​​',[ClientsController::class,'show'])->name('show');
 Route::post('/', [ClientsController::class,'store']);
 Route::delete('/{id}', [ClientsController::class, 'destroy'])->name('clients.destroy');
+Route::put('/{id}', [ClientsController::class, 'update'])->name('clients.update');
+
 
 Route::get('/emailtemplate','App\Http\Controllers\TemplatesController@index')->name('emailtemplate.index');
 Route::get('/emailtemplate/{​​​​​​​​id}​​​​​​​​',[TemplatesController::class,'show'])->name('emailtemplate.show');

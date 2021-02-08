@@ -24,7 +24,7 @@
                     @method('DELETE') @csrf
                     <input class="btn btn-danger" type="submit" value="DELETE">
                 </form> 
-                <form action="" method="GET">
+                <form action="{{ route('clients.show', $post['id']) }}" method="GET">
                     <input class="btn btn-primary" type="submit" value="UPDATE">
                 </form>
                 </td>
@@ -32,9 +32,6 @@
                 </td>
               </tr>
             </tbody>
-    {{-- <h2>{{ $post['name'] }}</h2>
-    <h2>{{ $post['surname'] }}</h2>
-    <p>{{ $post['email'] }}</p> --}}
     @endforeach
     </table>
 

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Gate;
 class clientsController extends Controller
 {
     public function index(){
@@ -17,7 +17,7 @@ class clientsController extends Controller
         //         return $emp;
         //     }
         // }
-        return view('clients', ['post' => \App\Models\Clients::find($id)]);
+        return view('client', ['post' => \App\Models\Clients::find($id)]);
     }
     // public function store(Request $request){
     //     $pb = new \App\Models\Clients();
@@ -49,5 +49,20 @@ class clientsController extends Controller
         \App\Models\Clients::destroy($id);
         return redirect('/')->with('status_success', 'Post deleted!');
     }
-     
+    
+    public function update($id, Request $request){
+        // [Dėmesio] validacijoje unique turi būti nurodytas teisingas lentelės pavadinimas!
+        // galime pažiūrėti, kas bus jei bus neteisingas
+        $this->validate($request, [
+            'name' => 'required|unique:clients,name,'.$id.',id|max:225',
+            'surname' => 'required',
+            'email' => 'required',
+        ]);
+        $bp = \App\Models\Clients::find($id);
+        $bp->name = $request['name'];
+        $bp->surname = $request['surname'];
+        $bp->email = $request['email'];
+        $bp->save(); 
+        return redirect('/');
+    }  
 }
