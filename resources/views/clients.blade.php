@@ -1,12 +1,12 @@
 @extends('layouts.master')
 @section('content')
     <h1>Clients</h1>
-    <form action="">
-        <input class="btn btn-primary float-right" type="submit" value="SENT">
-    </form>
+    <button type="submit"  class="btn btn-primary float-right" data-toggle="modal"  data-backdrop="static" data-keyboard="false" data-target="#myModalHorizontal">SENT</button>
+    <br><br>
     <table class="table">
         <thead class="thead-light">
           <tr>
+              <th></th>
             <th scope="col">Name</th>
             <th scope="col">Surname</th>
             <th scope="col">Email</th>
@@ -17,18 +17,19 @@
         <tbody>
     @foreach ($posts as $post)
             <tr>
+                <td><form action=""><input type="checkbox" name="template" id="template"></form></td>
                 <td>{{ $post['name'] }}</td>
                 <td>{{ $post['surname'] }}</td>
                 <td>{{ $post['email'] }}</td>
                 <td><form action="{{ route('clients.destroy', $post['id']) }}" method="POST">
                     @method('DELETE') @csrf
-                    <input class="btn btn-danger" type="submit" value="DELETE">
+                    <input class="btn btn-danger mb-1" type="submit" value="DELETE">
                 </form> 
                 <form action="{{ route('clients.show', $post['id']) }}" method="GET">
                     <input class="btn btn-primary" type="submit" value="UPDATE">
                 </form>
                 </td>
-                <td><button type="submit"  class="btn btn-primary" data-toggle="modal"  data-backdrop="static" data-keyboard="false" data-target="#myModalHorizontal">Sent</button>
+                <td><button type="submit"  class="btn btn-primary" data-toggle="modal"  data-backdrop="static" data-keyboard="false" data-target="#myModalHorizontal">SENT</button>
                 </td>
               </tr>
             </tbody>
@@ -46,7 +47,7 @@
         <input type="text" id="surname" name="surname"><br>
         <label for="email">Email:</label><br>
         <input type="text" id="email" name="email"><br>
-        <input class="btn btn-primary" type="submit" value="Create">
+        <input class="btn btn-primary mt-1" type="submit" value="Create">
     </form>
 
     <!-- Modal -->
@@ -67,8 +68,11 @@
                     <div class="header-btn">
                         <div id="div-physical">
                             <label>
-                                <input id="template" name="template" value="0" type="radio" checked="" class="validate[required]" data-errormessage-value-missing="Email template is required!">
-                                First template
+                                {{-- <input id="template" name="template" value="0" type="radio" checked="" class="validate[required]" data-errormessage-value-missing="Email template is required!">
+                                First template --}}
+                                @foreach ($posts as $post)
+                                <input id="template" name="template" value="{{ $post['template_id'] }}" type="radio"><span>{{ $post['template_id'] }}</span> <br>
+                                @endforeach
                             </label>
                         </div>
                 </form>
